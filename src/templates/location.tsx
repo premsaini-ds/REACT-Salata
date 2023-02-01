@@ -37,6 +37,7 @@ import LocationInformation from "../components/LocationInformation";
 import AboutSection from "../components/About";
 import List from "../components/list";
 import Faq from "../components/Faq";
+import BreadCrumbs from "../components/BreadCrumbs";
 
 export const config: TemplateConfig = {
   stream: {
@@ -233,14 +234,14 @@ type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=1500&location=${
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?api_key=b51f7ad3cf3f86165e59210178de4725&v=20230110&location=${
     data.document.yextDisplayCoordinate &&
     data.document.yextDisplayCoordinate.latitude
   },${
     data.document.yextDisplayCoordinate &&
     data.document.yextDisplayCoordinate.longitude
-  }&api_key=24a57cabafadf52431feb4c4462afea4&v=20181201&resolvePlaceholders=true&entityTypes=restaurant&savedFilterId=1074282222&limit=4&fields=googlePlaceId,slug,address,addressHidden,hours,name,geocodedCoordinate,isoRegionCode,localPhone,mainPhone,timezone,yextDisplayCoordinate,meta,timeZoneUtcOffset,what3WordsAddress,closed`;
-  console.log(url);
+  }`;
+ 
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
   )) as nearByLocation;
@@ -384,6 +385,12 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
           <>
 
               <PageLayout _site={_site}>
+                   <BreadCrumbs
+                    name={name}
+                    parents={address}
+                    baseUrl={address}
+                    address={address}
+                  ></BreadCrumbs>
                    <Banner
                       Name={name}
                       BackgroundImage={ c_headerBanner && c_headerBanner.url ? c_headerBanner.url : "" }
@@ -429,7 +436,7 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
                           
                     {c_relatedfaq ? <Faq prop={c_relatedfaq} /> : <></>}
                    
-                    {/* {externalApiData ? (
+                    {externalApiData ? (
                       <NearByLocation
                         prop={externalApiData}
                         coords={yextDisplayCoordinate}
@@ -437,7 +444,7 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
                       />
                     ) : (
                       <></>
-                    )} */}
+                    )}
 
               </PageLayout> 
           </>
