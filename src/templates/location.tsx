@@ -234,13 +234,13 @@ type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?api_key=b51f7ad3cf3f86165e59210178de4725&v=20230110&location=${
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=1500&api_key=b51f7ad3cf3f86165e59210178de4725&v=20230110&location=${
     data.document.yextDisplayCoordinate &&
     data.document.yextDisplayCoordinate.latitude
   },${
     data.document.yextDisplayCoordinate &&
     data.document.yextDisplayCoordinate.longitude
-  }`;
+  }&resolvePlaceholders=true&entityTypes=location&limit=3&fields=googlePlaceId,slug,address,addressHidden,hours,name,geocodedCoordinate,isoRegionCode,localPhone,mainPhone,timezone,yextDisplayCoordinate,meta,timeZoneUtcOffset,what3WordsAddress,closed`;
  
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()

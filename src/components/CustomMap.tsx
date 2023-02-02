@@ -83,7 +83,7 @@ function CustomMap(coords: props) {
             lat: coords.prop && coords.prop.latitude,
             lng: coords.prop && coords.prop.longitude,
           }}
-          // icon="https://www.salata.com/images/favicon.ico"
+          icon="https://www.salata.com/images/favicon.ico"
         />
       </GoogleMap>
     </LoadScript>
