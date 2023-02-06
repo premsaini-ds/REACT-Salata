@@ -552,13 +552,13 @@ const City: Template<TemplateRenderProps> = ({
           <Header
             nav={document._site.c_navigation}
             c_growWithUs={document._site.c_growWithUs}
-          />
+          />*/
           <BreadCrumbs
             name={name}
             parents={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
           ></BreadCrumbs>
-          <Banner
+          /*<Banner
             Name={name ? name : ""}
             TagLine={""}
             BackgroundImage={bannerImage}

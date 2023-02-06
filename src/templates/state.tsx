@@ -313,16 +313,17 @@ const State: Template<TemplateRenderProps> = ({
             "https://twitter.com/salatasalads",
           ],
         }}
-      />
+      />*/
 
-      <JsonLd<BreadcrumbList>
-        item={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
+      // <JsonLd<BreadcrumbList>
+      //   item={{
+      //     "@context": "https://schema.org",
+      //     "@type": "BreadcrumbList",
 
-          itemListElement: breadcrumbScheme,
-        }}
-      />
+      //     itemListElement: breadcrumbScheme,
+      //   }}
+      // />
+      /*
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -333,14 +334,14 @@ const State: Template<TemplateRenderProps> = ({
           <Header
             nav={document._site.c_navigation}
             c_growWithUs={document._site.c_growWithUs}
-          />
+          />*/
           <BreadCrumbs
             name={name}
             parents={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
             address={{}}
           ></BreadCrumbs>
-          <Banner
+          /*<Banner
             Name={c_addressRegionDisplayName ? c_addressRegionDisplayName : ""}
             TagLine={""}
             BackgroundImage={bannerImage}

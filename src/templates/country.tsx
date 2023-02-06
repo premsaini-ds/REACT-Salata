@@ -269,12 +269,12 @@ const Country: Template<TemplateRenderProps> = ({
           <Header
             nav={document._site.c_navigation}
             c_growWithUs={document._site.c_growWithUs}
-          /> */}
-          {/* <BreadCrumbs
+          // /> */}
+          <BreadCrumbs
             name={name}
             parents={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
-          ></BreadCrumbs> */}
+          ></BreadCrumbs>
           {/* <Banner
             Name={name ? regionNames.of(name) : ""}
             TagLine={""}

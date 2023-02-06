@@ -76,10 +76,10 @@ export const config: TemplateConfig = {
       // "yextDisplayCoordinate",
       // "c_ctabutton",
       // "c_gallery_food",
-      // "dm_directoryParents.name",
-      // "dm_directoryParents.slug",
-      // "dm_directoryParents.meta.entityType",
-      // "dm_directoryParents.c_addressRegionDisplayName",
+      "dm_directoryParents.name",
+      "dm_directoryParents.slug",
+      "dm_directoryParents.meta.entityType",
+      "dm_directoryParents.c_addressRegionDisplayName",
     ],
     filter: {
       entityTypes: ["location"],
@@ -253,7 +253,7 @@ type ExternalApiRenderData = TemplateRenderProps & {
 };
 
 const LocationTemplate: Template<ExternalApiRenderData> = ({
-  // relativePrefixToRoot,
+  relativePrefixToRoot,
   path,
   externalApiData,
   document,
@@ -293,7 +293,7 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
     // yextDisplayCoordinate,
     // c_ctabutton,
     // c_gallery_food,
-    // dm_directoryParents,
+    dm_directoryParents,
     // c_oURFOODGallery,
     // c_primaryCTA,
     // c_orderButton,
@@ -305,7 +305,7 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
   const { _site } = document;
   // let templateData = { document: document, __meta: __meta };
   // let hoursSchema = [];
-  // let breadcrumbScheme = [];
+  let breadcrumbScheme = [];
 
   // if (hours) {
   //   for (var key in hours) {
@@ -343,54 +343,54 @@ const LocationTemplate: Template<ExternalApiRenderData> = ({
   //     }
   //   }
   // }
-  // dm_directoryParents &&
-  //   dm_directoryParents.map((i: any, index: any) => {
-  //     if (index != 0) {
-  //       breadcrumbScheme.push({
-  //         "@type": "ListItem",
-  //         position: index,
-  //         item: {
-  //           "@id": `${stagingBaseUrl}${i.slug}.html`,
-  //           name: i.name,
-  //         },
-  //       });
-  //     }
-  //   });
-  // let url = "";
-  // let Name: any = document.name.toLowerCase();
-  // let string: any = Name.toString();
-  // let removeSpecialCharacters = string.replace(
-  //   /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
-  //   ""
-  // );
-  // let result: any = removeSpecialCharacters.replaceAll("  ", "-");
-  // let finalString: any = result.replaceAll(" ", "-");
-  // if (!document.slug) {
-  //   url = `${document.id}-${result}.html`;
-  // } else {
-  //   url = `${document.slug.toString()}.html`;
-  // }
+  dm_directoryParents &&
+    dm_directoryParents.map((i: any, index: any) => {
+      if (index != 0) {
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id": `${stagingBaseUrl}${i.slug}.html`,
+            name: i.name,
+          },
+        });
+      }
+    });
+  let url = "";
+  let Name: any = document.name.toLowerCase();
+  let string: any = Name.toString();
+  let removeSpecialCharacters = string.replace(
+    /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
+    ""
+  );
+  let result: any = removeSpecialCharacters.replaceAll("  ", "-");
+  let finalString: any = result.replaceAll(" ", "-");
+  if (!document.slug) {
+    url = `${document.id}-${result}.html`;
+  } else {
+    url = `${document.slug.toString()}.html`;
+  }
 
-  // breadcrumbScheme.push({
-  //   "@type": "ListItem",
-  //   position: 4,
-  //   item: {
-  //     "@id": `${stagingBaseUrl}${url}`,
-  //     name: document.name,
-  //   },
-  // });
+  breadcrumbScheme.push({
+    "@type": "ListItem",
+    position: 4,
+    item: {
+      "@id": `${stagingBaseUrl}${url}`,
+      name: document.name,
+    },
+  });
 
   return (
 
           <>
 
               <PageLayout _site={_site}>
-                   <BreadCrumbs
-                    name={name}
-                    parents={address}
-                    baseUrl={address}
-                    address={address}
-                  ></BreadCrumbs>
+              <BreadCrumbs
+            name={name}
+            parents={dm_directoryParents}
+            baseUrl={relativePrefixToRoot}
+            address={address}
+          ></BreadCrumbs>
                    <Banner
                       Name={name}
                       BackgroundImage={ c_headerBanner && c_headerBanner.url ? c_headerBanner.url : "" }
